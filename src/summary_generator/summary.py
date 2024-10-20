@@ -3,7 +3,7 @@ import os
 import google.generativeai as genai
 def generate_weather_summary(summary, city):
     try:
-        api_key = os.getenv("API_KEY", "AIzaSyAVxJxqTS7Vz_0VgDvaxLEBR5HgstpQ6Co")
+        api_key = os.getenv("API_KEY", "")
 
         if not api_key:
             return "No API key found. Please set the API_KEY environment variable."
