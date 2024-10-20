@@ -67,7 +67,7 @@ Calls the OpenWeatherAPI to get the real time data for the selected city. The Ap
 ### Steps to Install
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/weather-app.git
+   git clone https://github.com/krimerwool/Weather-Monitoring-Application
 
 2. **Navigate to the Project Directory**
    ```bash
