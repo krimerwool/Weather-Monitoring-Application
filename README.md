@@ -96,7 +96,7 @@ User gets a graph which represents the data recieved for the selected city by th
 ### Get a Bar graph Representation
 User gets a Bar graph which compares the current temperature of the six cities.
 
-##Contact
+## Contact
 For any questions, feedback, or inquiries, please reach out:
 ⚫ Sarthak Pundir
 ⚫ E-mail: sarthakpundir2003@gmail.com
