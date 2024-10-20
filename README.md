@@ -17,6 +17,7 @@ Calls the OpenWeatherAPI to get the real time data for the selected city. The Ap
   - **Temperature**: Current, minimum, maximum, and feels-like temperature.
   - **Wind Speed**: Current wind conditions measured in km/h or mph. I could not get the Wind data as it is on the paid version of the API, but it can certainly be integrated later.
   - **Weather Conditions**: Descriptive weather data (e.g., sunny, cloudy) along with a corresponding weather icon.
+  ![Weather-card](./images2/weather-card.jpg)
 
 ### 3. Historical Weather Data
 - Provides access to past weather conditions, enabling users to compare current weather with historical data.
@@ -25,17 +26,22 @@ Calls the OpenWeatherAPI to get the real time data for the selected city. The Ap
 ### 4. Graphical Representation
 - Users can view graphs representing historical weather trends, such as temperature changes over a specific time period.
 - Graphs allow for easy visualization of fluctuations in weather data.
+![Bar Graph](./images2/weather-analysis.jpg)
 
 ### 5. Bar Chart Representation
 - A Bar chart is used which represents the Current temperatures of all 6 cities at the current moment.
+![Bar Graph](./images2/bar_graph.jpg)
 
 ### 6. Custom Thresholds
 - Users can define custom thresholds for Maximum temperatures and Minimum Temperatures.
 - The app sends alerts when weather conditions exceed these thresholds.
+![Set them](./images2/set-it.jpg)
+![tooo high](./images2/Weather-Is-Too-High.jpg)
 
 ### 7. Weather Summary Generation
 -  User gets a Custom Weather Report of that day according to the data recieved by the api, which is generated using Google's Gemini flash 1.5.
 -  To Enable this feature the user will need to Enter their own gemini flash 1.5 API Key.
+![Summary](./images2/gen-ai.jpg)
 
 ### 8. Responsive Design
 - The application is designed to be fully responsive, ensuring a seamless experience.
