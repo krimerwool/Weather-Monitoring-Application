@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Monitoring System</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <!-- Threshold Card -->
+    <div class="card" id="threshold-card">
+        <h2>Set Threshold Values For Alerting System</h2>
+        <div class="dropdown-container">
+            <input type="number" id="maxThreshold" placeholder="Set Maximum Threshold" required>
+        </div>
+        <div class="dropdown-container">
+            <input type="number" id="minThreshold" placeholder="Set Minimum Threshold" required>
+        </div>
+        <button id="submitThresholds">Enter</button>
+    </div>
+
+    <!-- Weather Card (Initially hidden) -->
+    <div class="card" id="weather-card" style="display: none;">
+        <div class="dropdown-container" id="cityDropdownContainer" style="display: none;">
+            <select id="cityDropdown" onchange="checkWeather(this.value)">
+                <option value="">Select a city</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Hyderabad">Hyderabad</option>
+            </select>
+        </div>
+
+        <!-- Overall Average Temp with Icon -->
+        <div class="overall">
+            <img src="/static/images/Overall_average.png" class="overall-icon" alt="Overall Average">
+            <h3 class="overall_avg_temp">30°C</h3>
+            <h3>Overall Average</h3>
+        </div>
+
+        <div class="weather">
+            <img src="/static/images/Sunny.png" class="weather-icon" alt="Weather Condition">
+            <h1 class="avg_temp">30°C</h1>
+            <h2 class="city">Select a City</h2>
+            <div class="details">
+                <div class="col">
+                    <img src="/static/images/min_temp.png" alt="Min Temp">
+                    <div>
+                        <p class="min_temp">29°C</p>
+                        <p>Min Temp</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <img src="/static/images/max_temp.png" alt="Max Temp">
+                    <div>
+                        <p class="max_temp">31°C</p>
+                        <p>Max Temp</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <img src="/static/images/feels_like.png" alt="Feels Like">
+                    <div>
+                        <p class="feels_like">32°C</p>
+                        <p>Feels Like</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <img src="/static/images/wind.png" alt="Wind Speed">
+                    <div>
+                        <p class="wind_speed">15 km/h</p>
+                        <p>Wind Speed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card" id="graph-card" style="display: none;" >
+        <h2 class="city-name">Weather Trends for <span id="graph-city"></span></h2>
+        <canvas id="weatherGraph" width="400" height="300"></canvas>
+    </div>
+
+    <div class="card" id="graphbar-card" style="display: none;" >
+        <h2 class="city-name">AVERAGE WEATHER FOR ALL CITIES  <span id="graph-city"></span></h2>
+        <canvas id="barChart" width="800" height="600"></canvas>
+    </div>
+    
+    <div id="summaryText" class="summary-text"></div>
+    
+
+    <div class="card" id="historical-card" style="display: none;">
+        <h2>Historical Weather Trends</h2>
+        <div class="historical-container">
+            <div class="day-section" id="day-1">
+                <img src="/static/images/drizzle.png" class="condition-icon" alt="Drizzle">
+                <h3 class="date">Day 1</h3>
+                <p class="avg-temp">Avg: 30°C</p>
+                <p class="max-temp">Max: 31°C</p>
+                <p class="min-temp">Min: 29°C</p>
+            </div>
+            <!-- Repeat for other days -->
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/static/visualization.js"></script>
+    <script src="/static/thresholds.js"></script>
+
+    <script>
+
+
+
+        document.getElementById('submitThresholds').addEventListener('click', function() {
+            const minThreshold = parseFloat(document.getElementById('minThreshold').value);
+            const maxThreshold = parseFloat(document.getElementById('maxThreshold').value);
+
+            if (isNaN(minThreshold) || isNaN(maxThreshold)) {
+                alert('Please enter valid threshold values.');
+                return;
+            }
+
+            // Hide threshold card, show weather card and dropdown for city selection
+            document.getElementById('threshold-card').style.display = 'none';
+            document.getElementById('weather-card').style.display = 'block';
+            document.getElementById('graph-card').style.display = 'block';
+            document.getElementById('cityDropdownContainer').style.display = 'block';
+            document.getElementById('graphbar-card').style.display = 'block';
+
+        });
+
+
+        async function  ChartWeatherData(cityName) {
+            try {
+                // const response = await fetch(`/get_temp_charts?city=${cityName}`); 
+                const response = await fetch(`/get_temp_charts?city=${encodeURIComponent(cityName)}`);
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch weather data');
+                }
+                return await response.json();
+            } catch (error) {
+                console.error('Error fetching weather data:', error);
+                return null;
+            }
+        }
+
+        async function fetchWeatherData() {
+            try {
+                const response = await fetch('/daily-summary');
+                return await response.json();
+            } catch (error) {
+                console.error('Error fetching weather data:', error);
+            }
+
+        }
+
+        async function checkWeather(cityName) {
+            if (!cityName){
+                alert('please select a city name to get temprature statistics!')
+                return;}
+
+            const data = await fetchWeatherData();
+            if (!data) return;
+
+            const cityKey = capitalize(cityName);
+            const cityWeather = data[cityKey];
+
+            if (cityWeather) {
+                console.log("we're inside")
+                const avgTemp = cityWeather.avg_temp.at(-1);
+                const minThreshold = parseFloat(document.getElementById('minThreshold').value);
+                const maxThreshold = parseFloat(document.getElementById('maxThreshold').value);
+                if (avgTemp < minThreshold) {
+                    alert('ALERT: The current temperature is too low.');
+                } else if (avgTemp > maxThreshold) {
+                    alert('ALERT: The current temperature is too high.');
+                }                
+
+                updateUI(cityKey, cityWeather);
+
+                const dataa = await ChartWeatherData(cityName);
+                if (!dataa) return;
+                updateUI(cityKey, cityWeather);
+                updateWeatherGraph(dataa.line_chart, dataa.bar_chart, dataa.summary);
+                console.log('this has been executed')
+
+            } else {
+                console.error('City data not found');
+            }
+        }
+
+        function updateUI(city, weather) {
+            document.querySelector('.min_temp').innerText = `${weather.minimum_temp.at(-1)}°C`;
+            document.querySelector('.max_temp').innerText = `${weather.max_temp.at(-1)}°C`;
+            document.querySelector('.avg_temp').innerText = `${weather.avg_temp.at(-1)}°C`;
+            document.querySelector('.feels_like').innerText = `${weather.feels_like.at(-1)}°C`;
+            document.querySelector('.wind_speed').innerText = `${weather.wind_speed.at(-1)} km/h`;
+            document.querySelector('.overall_avg_temp').innerText = `${weather.overall_average_temp}°C`;
+            document.querySelector('.city').innerText = city;
+            document.querySelector('.weather-icon').src = `/static/images/${weather.condition.at(-1).toLowerCase()}.png`;
+            document.getElementById('graph-city').innerText = city;
+        }
+
+        function capitalize(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+        }
+
+        window.onload = () => {
+            //fetches weather every 5 minutes
+            fetchWeatherData();
+            setInterval(fetchWeatherData, 300000);
+        };
+
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,189 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+body {
+    background: #222;
+}
+.card {
+    width: 90%;
+    max-width: 1200px;
+    background: linear-gradient(135deg, #00feba, #5b548a);
+    color: #fff;
+    margin: 100px auto 0;
+    border-radius: 20px;
+    padding: 40px 35px;
+    text-align: center;
+}
+.dropdown-container {
+    width: 100%;
+    margin-bottom: 20px;
+}
+#cityDropdown {
+    width: 100%;
+    padding: 10px;
+    border-radius: 30px;
+    font-size: 18px;
+}
+.weather-icon {
+    width: 170px;
+    margin-top: 30px;
+}
+.weather h1 {
+    font-size: 80px;
+    font-weight: 500;
+}
+.weather h2 {
+    font-size: 45px;
+    font-weight: 400;
+    margin-top: -10px;
+}
+.details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin-top: 50px;
+}
+.col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+}
+.col img {
+    width: 40px;
+    margin-right: 10px;
+}
+.avg_temp, .min_temp, .max_temp, .feels_like, .wind_speed {
+    font-size: 28px;
+    margin-top: -6px;
+}
+.overall {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.overall-icon {
+    width: 50px;
+    margin-right: 15px;
+}
+
+.overall_avg_temp {
+    font-size: 25px;
+    font-weight: 600;
+    color: #fff;
+}
+#graph-card {
+    width: 90%;
+    max-width: 1200px;
+    background: linear-gradient(135deg, #0a0a0a, #5b548a);
+    color: #fff;
+    margin: 20px auto 0;
+    border-radius: 20px;
+    padding: 40px 35px;
+    text-align: center;
+}
+#historical-card {
+    padding: 20px;  /* Add padding to the card */
+    border: 1px solid #ccc;  /* Optional border */
+    border-radius: 10px;  /* Rounded corners */
+    margin-top: 20px;  /* Space above the historical card */
+}
+
+.historical-container {
+    display: flex;
+    justify-content: space-between;
+      /* Space out the sections evenly */
+}
+
+.day-section {
+    flex: 1;  /* Make sections flexible */
+    padding: 15px;  /* Padding for each day section */
+    text-align: center;  /* Center-align text */
+
+    border: 1px solid #010101;  /* Light border around each section */
+    border-radius: 8px;  /* Rounded corners */
+    margin: 0 10px;  /* Margin between sections */
+}
+
+.condition-icon {
+    width: 50px;  /* Increased icon size */
+    height: 50px;  /* Increased icon size */
+}
+
+.date {
+    font-size: 1.5em;  /* Increase font size for the date */
+    margin: 10px 0;  /* Space around date */
+}
+
+.max-temp,
+.min-temp {
+    font-size: 1.2em;  /* Increase font size for temperatures */
+}
+.avg-temp {
+    font-size: 1.2em;  /* Font size for average temperature */
+    margin: 5px 0;  /* Margin around average temperature */
+    color: #fbfbfb;  /* Optional color for average temperature */
+}
+#threshold-card {
+    width: 90%;
+    max-width: 1200px;
+    background: linear-gradient(135deg, #000000, #293a50);
+    color: #fff;
+    margin: 100px auto 0;
+    border-radius: 20px;
+    padding: 40px 35px;
+    text-align: center;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 30px;
+    font-size: 18px;
+    border: none;  /* Remove default border */
+    outline: none; /* Remove outline */
+}
+
+input[type="number"]:focus {
+    border: 2px solid #fff;  /* Change border on focus */
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);  /* Add a glow effect */
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #5b548a; /* Match button color with the card */
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+button:hover {
+    background-color: #00feba; /* Change color on hover */
+}
+
+.summary-text {
+    font-size: 1.2em; /* Adjust the font size as needed */
+    color: #ffcdcd; 
+    background-color: #060606; 
+    padding: 10px; 
+    border-radius: 5px;
+    border: 1px solid #0c0c0c; 
+    margin-top: 15px; 
+    text-align: center; 
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Add a slight shadow for depth */
+}
+
+.card .summary-text {
+    width: 90%; 
+    margin-left: auto; /* Center horizontally */
+    margin-right: auto;
+}
