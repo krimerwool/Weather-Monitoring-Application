@@ -102,6 +102,9 @@ User gets a graph which represents the data recieved for the selected city by th
 ### Get a Bar graph Representation
 User gets a Bar graph which compares the current temperature of the six cities.
 
+### Get a Weather Reporter Styled Weather Report
+User will have to enter their own google gemini API key in src/summary_generator/summary.py:6
+
 ## Contact
 For any questions, feedback, or inquiries, please reach out:
 - Sarthak Pundir
