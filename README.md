@@ -98,7 +98,7 @@ User gets a Bar graph which compares the current temperature of the six cities.
 
 ## Contact
 For any questions, feedback, or inquiries, please reach out:
-⚫ Sarthak Pundir
-⚫ E-mail: sarthakpundir2003@gmail.com
-⚫ GitHub: https://github.com/krimerwool
+- Sarthak Pundir
+- E-mail: sarthakpundir2003@gmail.com
+- GitHub: https://github.com/krimerwool
 
