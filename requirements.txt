@@ -1,4 +1,8 @@
-Flask
-Flask-Cors
-google-generativeai
-requests
+Flask==2.2.2             
+requests==2.28.1          
+Flask-Cors==3.0.10       
+gunicorn==20.1.0         
+pandas==1.5.2            
+matplotlib==3.6.2        
+numpy==1.23.5            
+
