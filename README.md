@@ -36,7 +36,7 @@ Calls the OpenWeatherAPI to get the real time data for the selected city. The Ap
 - Users can define custom thresholds for Maximum temperatures and Minimum Temperatures.
 - The app sends alerts when weather conditions exceed these thresholds.
 ![Set them](./images2/set-it.jpg)
-![tooo high](./images2/Weather-Is-Too-High.jpg)
+![tooo high](./images2/too-high.jpg)
 
 ### 7. Weather Summary Generation
 -  User gets a Custom Weather Report of that day according to the data recieved by the api, which is generated using Google's Gemini flash 1.5.
