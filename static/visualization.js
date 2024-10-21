@@ -83,7 +83,7 @@ function updateWeatherGraph(lineChartData, barChartData, summary) {
                 x: {
                     title: {
                         display: true,
-                        text: 'Favourite Colour',
+                        text: 'City',
                         font: {
                             size: 16, 
                             weight: 'bold'
@@ -98,7 +98,7 @@ function updateWeatherGraph(lineChartData, barChartData, summary) {
                 y: {
                     title: {
                         display: true,
-                        text: 'Children', 
+                        text: 'Temperature', 
                         font: {
                             size: 16, 
                             weight: 'bold'
